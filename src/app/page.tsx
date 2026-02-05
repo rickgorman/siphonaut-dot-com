@@ -13,6 +13,9 @@ import {
   Zap,
   Lock,
   Check,
+  Eye,
+  FileJson,
+  Shield,
 } from "lucide-react";
 
 export default function Home() {
@@ -74,18 +77,10 @@ export default function Home() {
         initial="hidden"
         animate="visible"
       >
-        {/* Invite-only badge */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            <Lock className="h-3 w-3" />
-            <span>Private Beta</span>
-          </div>
-        </motion.div>
-
         {/* Logo / Brand */}
         <motion.div
           variants={itemVariants}
-          className="mb-8 flex items-center gap-3"
+          className="mb-6 flex items-center gap-3"
         >
           <motion.div
             className="group relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-500 shadow-lg shadow-emerald-500/30"
@@ -101,7 +96,7 @@ export default function Home() {
         </motion.div>
 
         {/* Human/Agent Toggle */}
-        <motion.div variants={itemVariants} className="mb-10">
+        <motion.div variants={itemVariants} className="mb-8">
           <div className="inline-flex items-center rounded-full border border-slate-700/50 bg-slate-900/60 p-1 backdrop-blur-sm">
             <button
               onClick={() => setIsHuman(true)}
@@ -143,10 +138,10 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                Your agents.{" "}
+                Discover every API.{" "}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                    Supercharged.
+                    Automatically.
                   </span>
                   <motion.span
                     className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 opacity-60"
@@ -164,10 +159,10 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                Built for{" "}
+                Learn any app.{" "}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                    agents like you.
+                    Instantly.
                   </span>
                   <motion.span
                     className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 opacity-60"
@@ -194,8 +189,9 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                Siphonaut is the command center for orchestrating AI agents at
-                scale. Deploy, monitor, and amplify—all from one place.
+                A Chrome extension that watches your browsing and catalogs every
+                JSON API it sees. Schema inference, auth detection, and one-click
+                documentation—all passive, all automatic.
               </motion.span>
             ) : (
               <motion.span
@@ -204,32 +200,76 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                Native tooling designed for autonomous operation. API-first.
-                Permission-aware. Built to help you ship faster.
+                Export skill packs from any web app. Get typed schemas,
+                auth patterns, and real request samples—everything you need
+                to interact with APIs your human has never documented.
               </motion.span>
             )}
           </AnimatePresence>
         </motion.p>
+
+        {/* Private Beta badge - moved below subheadline */}
+        <motion.div variants={itemVariants} className="mt-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-emerald-400">
+            <Lock className="h-3 w-3" />
+            <span>Private Beta</span>
+          </div>
+        </motion.div>
 
         {/* Value props */}
         <motion.div
           variants={itemVariants}
           className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
         >
-          <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-emerald-400" />
-            <span>10x faster deployment</span>
-          </div>
-          <div className="hidden h-4 w-px bg-slate-700 sm:block" />
-          <div className="flex items-center gap-2">
-            <Users className="h-4 w-4 text-emerald-400" />
-            <span>Multi-agent coordination</span>
-          </div>
-          <div className="hidden h-4 w-px bg-slate-700 sm:block" />
-          <div className="flex items-center gap-2">
-            <Lock className="h-4 w-4 text-emerald-400" />
-            <span>Enterprise-grade security</span>
-          </div>
+          <AnimatePresence mode="wait">
+            {isHuman ? (
+              <motion.div
+                key="human-props"
+                className="flex flex-wrap items-center justify-center gap-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4 text-emerald-400" />
+                  <span>Passive discovery</span>
+                </div>
+                <div className="hidden h-4 w-px bg-slate-700 sm:block" />
+                <div className="flex items-center gap-2">
+                  <FileJson className="h-4 w-4 text-emerald-400" />
+                  <span>Auto schema inference</span>
+                </div>
+                <div className="hidden h-4 w-px bg-slate-700 sm:block" />
+                <div className="flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-emerald-400" />
+                  <span>Auth pattern detection</span>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="agent-props"
+                className="flex flex-wrap items-center justify-center gap-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-emerald-400" />
+                  <span>Instant skill packs</span>
+                </div>
+                <div className="hidden h-4 w-px bg-slate-700 sm:block" />
+                <div className="flex items-center gap-2">
+                  <FileJson className="h-4 w-4 text-emerald-400" />
+                  <span>Typed schemas</span>
+                </div>
+                <div className="hidden h-4 w-px bg-slate-700 sm:block" />
+                <div className="flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-emerald-400" />
+                  <span>Real auth samples</span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Email signup */}
@@ -259,7 +299,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
                   <span className="relative flex items-center gap-2">
-                    Request Access
+                    Get Early Access
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </motion.button>
@@ -280,7 +320,7 @@ export default function Home() {
           </AnimatePresence>
 
           <p className="mt-4 text-xs text-slate-500">
-            Join 2,847 others on the waitlist. No spam, ever.
+            Join the waitlist. No spam, ever.
           </p>
         </motion.div>
 
@@ -290,7 +330,7 @@ export default function Home() {
           className="mt-12 flex items-center gap-4"
         >
           <motion.a
-            href="https://github.com/rickgorman/siphonaut-dot-com"
+            href="https://github.com/rickgorman/siphonaut"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex h-11 w-11 items-center justify-center rounded-full border border-slate-700/50 bg-slate-900/40 text-slate-400 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-400"
