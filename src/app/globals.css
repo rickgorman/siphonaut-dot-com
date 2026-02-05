@@ -30,7 +30,7 @@
 }
 
 ::selection {
-  background-color: rgba(56, 189, 248, 0.2);
+  background-color: rgba(16, 185, 129, 0.25);
   color: #ffffff;
 }
 
@@ -90,8 +90,8 @@ body::after {
   height: 100%;
   z-index: -2;
   background:
-    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.04), transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(124, 58, 237, 0.04), transparent 45%),
+    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.05), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(132, 204, 22, 0.04), transparent 45%),
     linear-gradient(to bottom, #020617, #0B1120);
   pointer-events: none;
 }
@@ -130,12 +130,12 @@ body::after {
 
 .glass-card:hover {
   background: rgba(15, 23, 42, 0.5);
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(16, 185, 129, 0.15);
   transform: translateY(-2px);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.05),
+    0 0 0 1px rgba(16, 185, 129, 0.1),
     0 12px 32px -8px rgba(0,0,0,0.4),
-    0 4px 12px -4px rgba(56, 189, 248, 0.1);
+    0 4px 12px -4px rgba(16, 185, 129, 0.15);
 }
 
 /* Buttons */
@@ -197,7 +197,7 @@ button, a {
 }
 
 :focus-visible {
-  outline: 2px solid #38bdf8;
+  outline: 2px solid #10b981;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -210,8 +210,8 @@ button, a {
   z-index: 9999;
   padding: 12px 24px;
   background: #020617;
-  color: #38bdf8;
-  border: 2px solid #38bdf8;
+  color: #10b981;
+  border: 2px solid #10b981;
   border-radius: 8px;
   font-weight: 600;
   transition: top 0.2s ease-out;
