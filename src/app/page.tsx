@@ -1,17 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
   ArrowRight,
   Github,
   Twitter,
-  ChevronDown,
   Users,
   Bot,
   Zap,
-  Lock,
   Check,
   Eye,
   FileJson,
@@ -23,16 +21,6 @@ export default function Home() {
   const [isHuman, setIsHuman] = useState(true);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 50);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,7 +60,7 @@ export default function Home() {
       <div className="pointer-events-none absolute top-1/2 left-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-teal-500/5 blur-[100px]" />
 
       <motion.div
-        className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-start px-6 py-24 text-center sm:justify-center"
+        className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-start px-6 py-16 text-center sm:justify-center sm:py-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -208,18 +196,10 @@ export default function Home() {
           </AnimatePresence>
         </motion.p>
 
-        {/* Private Beta badge - moved below subheadline */}
-        <motion.div variants={itemVariants} className="mt-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            <Lock className="h-3 w-3" />
-            <span>Private Beta</span>
-          </div>
-        </motion.div>
-
         {/* Value props */}
         <motion.div
           variants={itemVariants}
-          className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
+          className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
         >
           <AnimatePresence mode="wait">
             {isHuman ? (
@@ -273,7 +253,7 @@ export default function Home() {
         </motion.div>
 
         {/* Signup / Agent Instructions */}
-        <motion.div variants={itemVariants} className="mt-12 w-full max-w-xl">
+        <motion.div variants={itemVariants} className="mt-8 w-full max-w-xl">
           <AnimatePresence mode="wait">
             {isHuman ? (
               // Human: Email signup form
@@ -386,7 +366,7 @@ export default function Home() {
         {/* Social links */}
         <motion.div
           variants={itemVariants}
-          className="mt-12 flex items-center gap-4"
+          className="mt-8 flex items-center gap-4"
         >
           <motion.a
             href="https://github.com/rickgorman/siphonaut"
@@ -412,32 +392,13 @@ export default function Home() {
           </motion.a>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: hasScrolled ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            className="flex flex-col items-center gap-2 text-slate-500"
-            animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="text-xs font-medium uppercase tracking-widest">
-              Scroll
-            </span>
-            <ChevronDown className="h-4 w-4" />
-          </motion.div>
-        </motion.div>
+        {/* Footer */}
+        <footer className="mt-8 text-center">
+          <p className="text-sm text-slate-500">
+            &copy; {new Date().getFullYear()} Siphonaut. All rights reserved.
+          </p>
+        </footer>
       </motion.div>
-
-      {/* Footer */}
-      <footer className="relative py-8 text-center">
-        <p className="text-sm text-slate-500">
-          &copy; {new Date().getFullYear()} Siphonaut. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
