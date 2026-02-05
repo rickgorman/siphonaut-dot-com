@@ -272,56 +272,115 @@ export default function Home() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Email signup */}
-        <motion.div variants={itemVariants} className="mt-12 w-full max-w-md">
+        {/* Signup / Agent Instructions */}
+        <motion.div variants={itemVariants} className="mt-12 w-full max-w-xl">
           <AnimatePresence mode="wait">
-            {!submitted ? (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-3 sm:flex-row"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-              >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                  className="h-14 flex-1 rounded-full border border-slate-700/50 bg-slate-900/60 px-6 text-white placeholder-slate-500 outline-none backdrop-blur-sm transition-all duration-300 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
-                />
-                <motion.button
-                  type="submit"
-                  className="btn-glow-primary group relative h-14 overflow-hidden rounded-full bg-gradient-to-r from-emerald-600 to-lime-500 px-8 text-sm font-bold tracking-wide text-white"
-                  whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                >
-                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-                  <span className="relative flex items-center gap-2">
-                    Get Early Access
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </motion.button>
-              </motion.form>
-            ) : (
+            {isHuman ? (
+              // Human: Email signup form
               <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center justify-center gap-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 py-4 text-emerald-400"
+                key="human-signup"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <Check className="h-5 w-5" />
-                <span className="font-medium">
-                  You&apos;re on the list! We&apos;ll be in touch soon.
-                </span>
+                {!submitted ? (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-3 sm:flex-row"
+                  >
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      required
+                      className="h-14 flex-1 rounded-full border border-slate-700/50 bg-slate-900/60 px-6 text-white placeholder-slate-500 outline-none backdrop-blur-sm transition-all duration-300 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
+                    />
+                    <motion.button
+                      type="submit"
+                      className="btn-glow-primary group relative h-14 overflow-hidden rounded-full bg-gradient-to-r from-emerald-600 to-lime-500 px-8 text-sm font-bold tracking-wide text-white"
+                      whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                      whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+                    >
+                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+                      <span className="relative flex items-center gap-2">
+                        Get Early Access
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </motion.button>
+                  </form>
+                ) : (
+                  <div className="flex items-center justify-center gap-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 py-4 text-emerald-400">
+                    <Check className="h-5 w-5" />
+                    <span className="font-medium">
+                      You&apos;re on the list! We&apos;ll be in touch soon.
+                    </span>
+                  </div>
+                )}
+                <p className="mt-4 text-xs text-slate-500">
+                  Join the waitlist. No spam, ever.
+                </p>
+              </motion.div>
+            ) : (
+              // Agent: AGENTS.md style instructions
+              <motion.div
+                key="agent-instructions"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-left"
+              >
+                <div className="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-sm">
+                  {/* Header */}
+                  <div className="flex items-center gap-2 border-b border-slate-700/50 bg-slate-800/50 px-4 py-3">
+                    <div className="flex gap-1.5">
+                      <div className="h-3 w-3 rounded-full bg-red-500/80" />
+                      <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                      <div className="h-3 w-3 rounded-full bg-green-500/80" />
+                    </div>
+                    <span className="ml-2 text-xs font-medium text-slate-400">
+                      AGENTS.md
+                    </span>
+                  </div>
+                  {/* Content */}
+                  <div className="p-5 font-mono text-sm leading-relaxed">
+                    <p className="text-slate-400"># Siphonaut Agent Access</p>
+                    <br />
+                    <p className="text-slate-400">## Request Beta Access</p>
+                    <p className="text-slate-500 mt-2">
+                      POST to the waitlist endpoint with your agent identifier:
+                    </p>
+                    <pre className="mt-3 rounded-lg bg-slate-950/50 p-3 text-xs overflow-x-auto">
+                      <code className="text-emerald-400">
+{`curl -X POST https://api.siphonaut.com/v1/waitlist \\
+  -H "Content-Type: application/json" \\
+  -d '{"agent_id": "your-agent-id", "capabilities": ["api-discovery"]}'`}
+                      </code>
+                    </pre>
+                    <br />
+                    <p className="text-slate-400">## Authenticate</p>
+                    <p className="text-slate-500 mt-2">
+                      If you have a token, include it in requests:
+                    </p>
+                    <pre className="mt-3 rounded-lg bg-slate-950/50 p-3 text-xs overflow-x-auto">
+                      <code className="text-emerald-400">
+{`Authorization: Bearer <YOUR_ACCESS_TOKEN>`}
+                      </code>
+                    </pre>
+                    <br />
+                    <p className="text-slate-400">## Status</p>
+                    <p className="text-yellow-400/80 mt-2 flex items-center gap-2">
+                      <span className="inline-block h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
+                      API endpoints coming soon. Join waitlist for early access.
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-center text-xs text-slate-500">
+                  Machine-readable instructions. Your human can also request access above.
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
-
-          <p className="mt-4 text-xs text-slate-500">
-            Join the waitlist. No spam, ever.
-          </p>
         </motion.div>
 
         {/* Social links */}
