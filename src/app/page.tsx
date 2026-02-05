@@ -177,9 +177,9 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                A Chrome extension that watches your browsing and catalogs every
-                JSON API it sees. Schema inference, auth detection, and one-click
-                documentation—all passive, all automatic.
+                A Chrome extension that passively catalogs every API you encounter.
+                Export universal skill packs your AI agents can use.
+                Contribute to a crowdsourced registry—npm for agent capabilities.
               </motion.span>
             ) : (
               <motion.span
@@ -212,17 +212,17 @@ export default function Home() {
               >
                 <div className="flex items-center gap-2">
                   <Eye className="h-4 w-4 text-emerald-400" />
-                  <span>Passive discovery</span>
+                  <span>Zero-config capture</span>
                 </div>
                 <div className="hidden h-4 w-px bg-slate-700 sm:block" />
                 <div className="flex items-center gap-2">
                   <FileJson className="h-4 w-4 text-emerald-400" />
-                  <span>Auto schema inference</span>
+                  <span>Universal skill packs</span>
                 </div>
                 <div className="hidden h-4 w-px bg-slate-700 sm:block" />
                 <div className="flex items-center gap-2">
                   <Shield className="h-4 w-4 text-emerald-400" />
-                  <span>Auth pattern detection</span>
+                  <span>Crowdsourced registry</span>
                 </div>
               </motion.div>
             ) : (
