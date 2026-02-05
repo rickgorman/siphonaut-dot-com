@@ -12,8 +12,8 @@ export default function Home() {
       className="relative min-h-screen w-full overflow-hidden"
     >
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute -top-[20%] left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-violet-500/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] rounded-full bg-sky-500/5 blur-[100px]" />
+      <div className="pointer-events-none absolute -top-[20%] left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] rounded-full bg-lime-500/5 blur-[100px]" />
 
       <div className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
         {/* Logo / Brand */}
@@ -27,7 +27,7 @@ export default function Home() {
           }
           className="mb-8 flex items-center gap-3"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-600 shadow-lg shadow-violet-500/30">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-500 shadow-lg shadow-emerald-500/30">
             <Sparkles className="h-6 w-6 text-white" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-white">
@@ -50,7 +50,7 @@ export default function Home() {
           }
         >
           Something{" "}
-          <span className="bg-gradient-to-r from-sky-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
             extraordinary
           </span>
           <br />
@@ -85,7 +85,7 @@ export default function Home() {
         >
           <a
             href="mailto:hello@siphonaut.com"
-            className="btn-glow-primary group inline-flex h-14 items-center gap-3 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-8 text-sm font-bold tracking-wide text-white transition-all hover:scale-[1.02] active:scale-95"
+            className="btn-glow-primary group inline-flex h-14 items-center gap-3 rounded-full bg-gradient-to-r from-emerald-600 to-lime-500 px-8 text-sm font-bold tracking-wide text-white transition-all hover:scale-[1.02] active:scale-95"
           >
             <span>Get in Touch</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -102,7 +102,7 @@ export default function Home() {
           }
         >
           <a
-            href="https://github.com"
+            href="https://github.com/rickgorman/siphonaut-dot-com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/50 bg-slate-900/40 text-slate-400 transition-colors hover:border-slate-600 hover:bg-slate-800/60 hover:text-white"
@@ -148,14 +148,13 @@ export default function Home() {
             </p>
           </div>
         </motion.div>
+        {/* Footer */}
+        <footer className="mt-20 py-8 text-center">
+          <p className="text-sm text-slate-500">
+            &copy; {new Date().getFullYear()} Siphonaut. All rights reserved.
+          </p>
+        </footer>
       </div>
-
-      {/* Footer */}
-      <footer className="absolute bottom-0 left-0 right-0 py-8 text-center">
-        <p className="text-sm text-slate-500">
-          &copy; {new Date().getFullYear()} Siphonaut. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }

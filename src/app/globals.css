@@ -148,13 +148,13 @@ button:active:not(:disabled) {
 }
 
 .btn-glow-primary {
-  box-shadow: 0 0 20px -5px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.4);
 }
 
 .btn-glow-primary:hover {
   box-shadow:
-    0 0 30px -5px rgba(139, 92, 246, 0.5),
-    0 0 60px -10px rgba(217, 70, 239, 0.3);
+    0 0 30px -5px rgba(16, 185, 129, 0.5),
+    0 0 60px -10px rgba(132, 204, 22, 0.3);
 }
 
 /* Link animations */
