@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <main
       id="main-content"
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative min-h-screen w-full"
     >
       {/* Ambient glow orbs */}
       <div className="pointer-events-none absolute -top-[20%] left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[120px]" />
@@ -72,7 +72,7 @@ export default function Home() {
       <div className="pointer-events-none absolute top-1/2 left-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-teal-500/5 blur-[100px]" />
 
       <motion.div
-        className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 py-20 text-center"
+        className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-start px-6 py-24 text-center sm:justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
