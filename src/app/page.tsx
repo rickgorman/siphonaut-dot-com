@@ -126,10 +126,10 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                Discover every API.{" "}
+                Add features to{" "}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                    Automatically.
+                    any website.
                   </span>
                   <motion.span
                     className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-400 opacity-60"
@@ -177,9 +177,9 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                A Chrome extension that passively catalogs every API you encounter.
-                Export universal skill packs your AI agents can use.
-                Contribute to a crowdsourced registry—npm for agent capabilities.
+                Siphonaut learns every site&apos;s hidden APIs as you browse.
+                Then it lets you inject new capabilities—automations, shortcuts,
+                integrations—with suggestions crowdsourced from power users.
               </motion.span>
             ) : (
               <motion.span
@@ -212,17 +212,17 @@ export default function Home() {
               >
                 <div className="flex items-center gap-2">
                   <Eye className="h-4 w-4 text-emerald-400" />
-                  <span>Zero-config capture</span>
+                  <span>Passive API discovery</span>
                 </div>
                 <div className="hidden h-4 w-px bg-slate-700 sm:block" />
                 <div className="flex items-center gap-2">
-                  <FileJson className="h-4 w-4 text-emerald-400" />
-                  <span>Universal skill packs</span>
+                  <Zap className="h-4 w-4 text-emerald-400" />
+                  <span>Inject custom features</span>
                 </div>
                 <div className="hidden h-4 w-px bg-slate-700 sm:block" />
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-emerald-400" />
-                  <span>Crowdsourced registry</span>
+                  <Users className="h-4 w-4 text-emerald-400" />
+                  <span>Community suggestions</span>
                 </div>
               </motion.div>
             ) : (
